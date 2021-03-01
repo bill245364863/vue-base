@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <button v-on:click="billClick()">click here</button>
+</div>
+</body>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    var vm  = new Vue({
+        el: "#app",
+        data: {
+            message: "say hi"
+        },
+        methods:{
+            billClick: function(){
+                alert(this.message);
+            }
+        }
+
+    });
+</script>
+</html>

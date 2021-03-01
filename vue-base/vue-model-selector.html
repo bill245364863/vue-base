@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <select v-model="message">
+        <option disabled value="">禁用</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <h1>{{message}}</h1>
+</div>
+</body>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    var vm  = new Vue({
+        el: "#app",
+        data: {
+            message: ""
+        }
+    });
+</script>
+</html>

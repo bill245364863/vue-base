@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<!--view 层 模板-->
+<div id="app">
+    <todo>
+        <todo-title slot="todo-title" :title="title"></todo-title>
+        <!--使用v-on:remove="removeItems(index)" 绑定外部方法removeItems(index)-->
+        <todo-content slot="todo-content" v-for="(item,index) in items" v-bind:content="item" :index="index" v-on:remove="removeItems(index)"></todo-content>
+    </todo>
+</div>
+</body>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    /*定义插槽*/
+    Vue.component("todo",{
+        template :"<div>" +
+                     "<slot name='todo-title'></slot>" +
+                "<ul>" +
+                     "<slot name='todo-content'></slot>" +
+                "</ul>" +
+                 "</div>"
+    });
+
+    Vue.component("todo-title",{
+        props:["title"],
+       template:  "<div>{{title}}</div>"
+    });
+
+    Vue.component("todo-content",{
+        props:["content","index"],
+        /*只能绑定当前组件的方法*/
+        template:  "<li>{{content}}<button @click='remove(index)'>delete</button></li> ",
+        methods:{
+            remove: function (index){
+                /*自定义事件分发*/
+              this.$emit('remove',index);
+            }
+        }
+    });
+
+    var vm  = new Vue({
+        el: "#app",
+        data: {
+            title: "技术列表",
+            items:["spring","spring boot","spring mvc"]
+        },
+        methods: {
+            /*真正执行删除数据的逻辑方法*/
+            removeItems : function (index){
+            /*删除数组元素*/
+               this.items.splice(index,1);
+            }
+        }
+    });
+</script>
+</html>

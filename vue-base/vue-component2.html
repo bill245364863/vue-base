@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+ <bill v-for="item in items" :item="item" ></bill>
+<!--
+ <bill v-for="item in items" v-bind:item="item"></bill>
+-->
+
+</div>
+</body>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+<!--    定义一个vue的component-->
+    /*定义名称以及组件dom*/
+    Vue.component("bill",{
+        /*接收数据*/
+        props: ['item'],
+        template: '<h1 >{{item.id}}--{{item.name}}</h1>>'
+    })
+    var vm  = new Vue({
+        el: "#app",
+        data: {
+            /*对象*/
+            items:[
+                {id: 1,name: "bill"},
+                {id: 2,name: "java"},
+                {id: 3,name: "spring"},
+                {id: 4,name: "mybatis"},
+                {id: 5,name: "netty"}
+
+            ]
+        }
+    });
+</script>
+</html>

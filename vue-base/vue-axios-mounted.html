@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--解决闪烁问题-->
+    <style>
+        [v-clock]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app" v-clock>
+    <h1>{{info.name}}</h1>
+    <h1>{{info.address.country}}</h1>
+    <a v-bind:href="info.url" > this</a>
+</div>
+
+
+</body>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+
+    var vm  = new Vue({
+        el: "#app",
+        data: {},
+        /*区别data属性*/
+        data(){
+            return{
+                /*json格式要对应*/
+                info:{
+                    name:"",
+                    url:"",
+                    address:{
+                        street :"",
+                        city:"",
+                        country:""
+                    }
+                }
+            }
+        },
+        mounted(){//钩子函数
+            axios.get('./data.json').then(response=>(this.info = response.data))
+        }
+    });
+</script>
+</html>
