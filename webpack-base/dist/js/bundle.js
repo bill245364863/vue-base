@@ -1,0 +1,1 @@
+(()=>{var r={645:(r,t)=>{t.asyhi=function(){document.write("<h1><hi,bill/h1>")}}},t={};(function e(i){if(t[i])return t[i].exports;var n=t[i]={exports:{}};return r[i](n,n.exports,e),n.exports})(645).asyhi()})();
